@@ -1,0 +1,68 @@
+# Builds the site on GitHub and publishes it to GitHub Pages, pulling the articles from a
+# private Google Cloud Storage bucket at build time. The articles are never committed: they
+# exist only inside the build job, and Pages receives the built site as an upload.
+#
+# To turn it on:
+#   1. Settings → Pages → Source: "GitHub Actions".
+#   2. Settings → Secrets and variables → Actions → Variables:
+#        CONTENT_SOURCE        gs://your-bucket/articles
+#        GCP_WIF_PROVIDER      projects/123/locations/global/workloadIdentityPools/github/providers/github
+#        GCP_SERVICE_ACCOUNT   blog-reader@your-project.iam.gserviceaccount.com  (Storage Object Viewer on the bucket)
+#   3. Upload articles with:  gcloud storage rsync --recursive content gs://your-bucket/articles
+#      then run this workflow from the Actions tab, or push to main.
+#
+# Prefer another host? Build locally and upload dist/ instead, e.g.
+#   npx wrangler pages deploy dist      (Cloudflare Pages)
+#   npx netlify deploy --prod --dir dist
+#   gcloud storage rsync --recursive dist gs://your-site-bucket
+
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    if: vars.CONTENT_SOURCE != ''
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ vars.GCP_WIF_PROVIDER }}
+          service_account: ${{ vars.GCP_SERVICE_ACCOUNT }}
+      - uses: google-github-actions/setup-gcloud@v2
+      - run: npm install --no-audit --no-fund
+      - name: Pull articles
+        run: npm run pull
+        env:
+          CONTENT_SOURCE: ${{ vars.CONTENT_SOURCE }}
+      - name: Build
+        run: npm run build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

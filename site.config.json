@@ -1,0 +1,10 @@
+{
+  "title": "Hakim Guessous",
+  "description": "Essays on AI, agents and the infrastructure under them.",
+  "author": "Hakim Guessous",
+  "url": "https://example.com",
+  "language": "en-GB",
+  "contentDir": "content",
+  "examples": "dev",
+  "prettyUrls": true
+}

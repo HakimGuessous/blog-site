@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reading time</title>
+<style>
+  :root { --ink: #211B19; --muted: #635954; --rule: #DBD1C3; --field: #F2ECE3; --accent: #7A2D4B; color-scheme: light dark; }
+  @media (prefers-color-scheme: dark) { :root { --ink: #EFE7E2; --muted: #ABA09B; --rule: #3B3335; --field: #1E1A1B; --accent: #E59EBA; } }
+  body { margin: 0; padding: 4px; background: transparent; color: var(--ink); font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  label { display: block; font-size: 14px; color: var(--muted); margin-bottom: 6px; }
+  textarea { box-sizing: border-box; width: 100%; min-height: 120px; padding: 10px 12px; font: inherit; color: inherit; background: var(--field);
+    border: 1px solid var(--rule); border-radius: 4px; resize: vertical; }
+  textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  output { display: flex; gap: 24px; margin-top: 10px; font-variant-numeric: tabular-nums; }
+  output b { font-size: 22px; color: var(--accent); display: block; line-height: 1.2; }
+  output span { font-size: 13px; color: var(--muted); }
+</style>
+</head>
+<body>
+<label for="text">Paste a draft to see how the site will count it</label>
+<textarea id="text">One agent in a terminal is a joy, twenty for a day is a different problem, and a pile of transcripts only helps someone with a free afternoon.</textarea>
+<output for="text"><div><b id="words">0</b><span>words</span></div><div><b id="minutes">0</b><span>min read, at 230 words a minute</span></div></output>
+<script>
+  const text = document.getElementById("text");
+  const update = () => {
+    const words = text.value.trim().split(/\s+/).filter(Boolean).length;
+    document.getElementById("words").textContent = words.toLocaleString("en-GB");
+    document.getElementById("minutes").textContent = Math.max(1, Math.round(words / 230));
+  };
+  text.addEventListener("input", update);
+  update();
+</script>
+</body>
+</html>

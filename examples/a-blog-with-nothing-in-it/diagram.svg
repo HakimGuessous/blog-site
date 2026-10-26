@@ -1,0 +1,38 @@
+<svg viewBox="0 0 960 330" role="img" aria-labelledby="fig1-title" xmlns="http://www.w3.org/2000/svg">
+  <title id="fig1-title">Articles kept outside the repository are read by the build, which writes a static site</title>
+  <style>
+    .fg-box { fill: var(--bg); stroke: var(--rule); stroke-width: 1.5; }
+    .fg-out { fill: none; stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 6 6; }
+    .fg-repo { fill: none; stroke: var(--ink); stroke-width: 1.5; }
+    .fg-h { fill: var(--ink); font: 600 17px var(--font-ui); }
+    .fg-t { fill: var(--muted); font: 14px var(--font-ui); }
+    .fg-m { fill: var(--muted); font: 13px var(--font-mono); }
+    .fg-a { stroke: var(--accent); stroke-width: 2; fill: none; }
+    .fg-ah { fill: var(--accent); }
+  </style>
+  <rect x="0" y="0" width="960" height="330" style="fill: var(--surface)"/>
+  <rect class="fg-out" x="28" y="40" width="250" height="250" rx="12"/>
+  <text class="fg-t" x="44" y="66">Outside the repo</text>
+  <rect class="fg-box" x="48" y="86" width="210" height="58" rx="8"/>
+  <text class="fg-h" x="64" y="112">content/</text>
+  <text class="fg-m" x="64" y="132">index.md + media</text>
+  <rect class="fg-box" x="48" y="160" width="210" height="58" rx="8"/>
+  <text class="fg-h" x="64" y="186">or a bucket</text>
+  <text class="fg-m" x="64" y="206">npm run pull</text>
+  <text class="fg-t" x="44" y="262">Ignored by git</text>
+  <rect class="fg-repo" x="340" y="40" width="270" height="250" rx="12"/>
+  <text class="fg-t" x="356" y="66">The GitHub repo</text>
+  <rect class="fg-box" x="360" y="86" width="230" height="132" rx="8"/>
+  <text class="fg-h" x="376" y="112">npm run build</text>
+  <text class="fg-m" x="376" y="140">templates</text>
+  <text class="fg-m" x="376" y="162">styles</text>
+  <text class="fg-m" x="376" y="184">one example post</text>
+  <text class="fg-t" x="356" y="262">Safe to make public</text>
+  <rect class="fg-box" x="672" y="86" width="260" height="132" rx="8"/>
+  <text class="fg-h" x="688" y="112">dist/</text>
+  <text class="fg-m" x="688" y="140">a static site</text>
+  <text class="fg-t" x="688" y="184">Any host, uploaded</text>
+  <text class="fg-t" x="688" y="204">without a commit</text>
+  <path class="fg-a" d="M258 152 L 352 152"/><path class="fg-ah" d="M360 152 l -10 -6 v 12 z"/>
+  <path class="fg-a" d="M590 152 L 664 152"/><path class="fg-ah" d="M672 152 l -10 -6 v 12 z"/>
+</svg>

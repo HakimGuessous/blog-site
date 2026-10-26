@@ -1,0 +1,19 @@
+{
+  "name": "blog-site",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A small static blog whose articles live outside the repo",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "node scripts/build.mjs",
+    "new": "node scripts/new.mjs",
+    "pull": "node scripts/pull.mjs"
+  },
+  "dependencies": {
+    "marked": "^18.0.10"
+  }
+}

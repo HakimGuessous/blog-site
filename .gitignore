@@ -1,0 +1,9 @@
+# Articles and their media live here, outside version control.
+content/
+
+# Build output
+dist/
+.dev/
+
+node_modules/
+.DS_Store

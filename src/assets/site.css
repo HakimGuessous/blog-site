@@ -30,8 +30,8 @@
 
   --size: 1.25rem;
   --leading: 1.6;
-  --measure: 37rem;
-  --wide: 60rem;
+  --measure: 42rem;
+  --wide: 64rem;
   --gutter: 20px;
   --fig-radius: 3px;
   --fig-pad: 10px;
@@ -126,7 +126,7 @@ a:hover { color: var(--accent); text-decoration-color: currentColor; }
 .byline__author { color: var(--ink); font-weight: 600; }
 
 .prose > * { max-width: var(--measure); margin-inline: auto; }
-.prose > figure, .prose > .wide, .prose > .table-wrap { max-width: var(--wide); }
+.prose > figure, .prose > .wide, .prose > .table-wrap, .prose > .references { max-width: var(--wide); }
 .prose p { margin-block: 0 1.1em; text-wrap: pretty; }
 .prose h2, .prose h3 { position: relative; font-family: var(--font-display); line-height: 1.2; text-wrap: balance; }
 .prose h2 { font-size: 1.5rem; font-weight: 600; margin-block: 2.4em .7em; }
@@ -175,7 +175,8 @@ h2:hover .anchor, h3:hover .anchor, .anchor:focus-visible { opacity: 1; }
 .prose td.num, .prose th.num { text-align: right; }
 
 .references { margin-top: 4rem; padding-top: .25rem; border-top: 1px solid var(--rule); font-size: .9em; }
-.references > * { max-width: var(--measure); margin-inline: auto; }
+/* References run the full figure width, so a long citation fits on one line. */
+.references > * { max-width: var(--wide); margin-inline: auto; }
 .prose .references h2 { margin-top: 1.4em; font-size: 1.25rem; }
 .references p { margin: 1.4em auto .3em; }
 .references p strong { font-family: var(--font-ui); font-size: .875rem; font-weight: 600; }

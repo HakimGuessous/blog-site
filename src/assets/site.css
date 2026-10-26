@@ -1,6 +1,6 @@
 /* =====================================================================
    Site styles: Damson
-   Deep oat paper, a plum accent, a narrow grotesk for headings over a
+   Deep oat paper, a plum accent, a plain grotesk for headings over a
    text serif. Light (--l-*) and dark (--d-*) colours are set below and
    the scheme rules pick between them, following the reader's system.
    ===================================================================== */
@@ -24,7 +24,7 @@
 
   /* Swap in a licensed face by adding its @font-face and putting it first here. */
   --font-body: "Newsreader", Georgia, serif;
-  --font-display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
   --font-ui: var(--font-display);
   --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
 
@@ -196,7 +196,6 @@ h2:hover .anchor, h3:hover .anchor, .anchor:focus-visible { opacity: 1; }
 /* ---------- Damson details ---------- */
 
 .site-title { font-weight: 600; letter-spacing: -.01em; }
-.home-title, .post-title, .post-list__title, .prose h2, .prose h3, .site-title { font-stretch: 88%; font-variation-settings: "opsz" 72; }
 .home-title, .post-title { font-weight: 600; letter-spacing: -.03em; }
 .post-header { margin-top: 3rem; }
 .standfirst { font-size: 1.3125rem; }

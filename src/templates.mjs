@@ -1,7 +1,7 @@
 // Page templates. Fonts come from Google Fonts; to self-host a licensed face instead,
 // put it in src/assets/fonts/, add an @font-face rule to site.css and drop this URL.
 const FONTS =
-  "https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap";
+  "https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap";
 
 export const esc = (s = "") =>
   String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");

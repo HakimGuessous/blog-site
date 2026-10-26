@@ -147,11 +147,10 @@ scripts can't affect the article.
 
 ## Deploying
 
-`.github/workflows/deploy.yml` pulls `content/` from a private Cloud Storage bucket at build
-time and publishes `dist/` to GitHub Pages; the comments at its top list the repository
-variables it needs. Uploading an article there is
-`gcloud storage rsync --recursive content/<slug> gs://<bucket>/articles/<slug>`. Confirm with
-the author before uploading or triggering a deploy, since both publish his writing.
+Articles live in a separate private repo, not here. `CONTENT_DIR=<path to it> npm run deploy`
+builds the site without drafts and publishes `dist/` to Firebase Hosting (project in
+`.firebaserc`, settings in `firebase.json`), using the author's own Firebase login. Confirm with
+the author before deploying, since it publishes their writing.
 
 ## Where things live
 

@@ -12,6 +12,7 @@ npm run dev                      # preview at http://localhost:4321, drafts and 
 npm run new "Title of the post"  # start a draft in content/
 npm run build                    # production build into dist/, no drafts, no example
 npm run pull                     # fetch articles from a bucket or private repo (see below)
+npm run deploy                   # build and publish dist/ to Firebase Hosting
 ```
 
 Claude Code knows how to run all of this: the skill in `.claude/skills/blog/` is picked up
@@ -165,17 +166,25 @@ writing" link at the end, all leading to the home page. The site still publishes
 `content/` is in `.gitignore`, so nothing in it is ever committed. Where the articles actually
 live is up to you:
 
-- **On your machine only.** Write in `content/`, run `npm run build`, upload `dist/` to any static
-  host from your machine (Cloudflare Pages, Netlify, a bucket). Back the folder up separately.
+- **On your machine only.** Write in `content/` and back the folder up separately.
 - **Somewhere else on your machine.** `CONTENT_DIR=~/Writing/blog npm run dev` reads from any folder,
-  such as one synced by Dropbox or iCloud.
-- **In a bucket, deployed by GitHub.** Keep the articles in a private Cloud Storage bucket and let
-  `.github/workflows/deploy.yml` pull them at build time and publish to GitHub Pages. The articles
-  exist only inside the build job. The workflow's comments list the three variables to set.
-- **In a separate private repo.** `CONTENT_SOURCE=git@github.com:you/articles.git npm run pull`.
-  This keeps them on GitHub, but out of this repo.
+  such as a clone of a private articles repo, or one synced by Dropbox or iCloud.
+- **In a separate private repo.** Clone it anywhere and point `CONTENT_DIR` at it, or copy it
+  into `content/` with `CONTENT_SOURCE=git@github.com:you/articles.git npm run pull`.
 
 `npm run pull` understands `gs://`, `s3://`, git URLs and local paths.
+
+## Deploying
+
+The site is hosted on Firebase Hosting; `.firebaserc` names the project and `firebase.json`
+holds the hosting settings. Deploying is done from your machine with your own Google login:
+
+```
+npx firebase-tools login                                  # once
+CONTENT_DIR=../blog-articles npm run deploy               # build without drafts, then publish
+```
+
+To host somewhere else, run `npm run build` and upload `dist/` to any static host.
 
 ## Layout of the repo
 

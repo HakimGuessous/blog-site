@@ -147,7 +147,8 @@ scripts can't affect the article.
 
 ## Deploying
 
-Articles live in a separate private repo, not here. `CONTENT_DIR=<path to it> npm run deploy`
+Articles live in a separate private repo, not here, usually cloned at `../blog-articles`. Its
+`npm run deploy` (which sets `CONTENT_DIR` to that repo and runs this repo's `npm run deploy`)
 builds the site without drafts and publishes `dist/` to Firebase Hosting (project in
 `.firebaserc`, settings in `firebase.json`), using the author's own Firebase login. Confirm with
 the author before deploying, since it publishes their writing.

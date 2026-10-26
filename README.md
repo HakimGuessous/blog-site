@@ -177,12 +177,20 @@ live is up to you:
 ## Deploying
 
 The site is hosted on Firebase Hosting; `.firebaserc` names the project and `firebase.json`
-holds the hosting settings. Deploying is done from your machine with your own Google login:
+holds the hosting settings. Deploying is done from your machine with your own Google login.
+
+The articles live in a separate private repo cloned beside this one, which has a small helper
+that runs this repo's scripts against its folder, so the same commands work in PowerShell, WSL
+or macOS. From the articles repo:
 
 ```
-npx firebase-tools login                                  # once
-CONTENT_DIR=../blog-articles npm run deploy               # build without drafts, then publish
+npx firebase-tools login         # once
+npm run check                    # build with drafts, to catch broken links and files
+npm run deploy                   # build without drafts, then publish
 ```
+
+Without a helper, set `CONTENT_DIR` to the articles folder and run `npm run deploy` here. In
+PowerShell that's `$env:CONTENT_DIR="..\blog-articles"; npm run deploy`.
 
 To host somewhere else, run `npm run build` and upload `dist/` to any static host.
 
